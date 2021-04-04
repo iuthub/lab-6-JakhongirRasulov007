@@ -16,6 +16,7 @@
     $isUsernameValid = false;
     $isPasswordValid = false;
     $isConfirmPasswordValid = false;
+    $isBirthdayValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -38,6 +39,10 @@
         $confirmPasswordPattern = "/(.*[a-z]){8}/i";
         $confirmPassword = $_REQUEST["confirmPassword"];
         $isConfirmPasswordValid = $password == $confirmPassword;
+
+        $birthday = $_REQUEST["birthday"];
+        $birthdayPattern = "/^(0[1-9]|1[0-2])\.(0[1-9]|1\d|2\d|3[01])\.(19|20)\d{2}$/";
+        $isBirthdayValid = preg_match($birthdayPattern,$birthday);
     }
 
 
@@ -89,6 +94,15 @@
             <label for="confirmPassword" class="col-sm-2 col-form-label">confirm Password</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control <?=$isConfirmPasswordValid ? "": "is-invalid"?>" id="confirmPassword" name="confirmPassword" placeholder="enter password again">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="birthday" class="col-sm-2 col-form-label">birthday</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isBirthdayValid ? "": "is-invalid"?>" id="birthday" name="birthday" placeholder="enter birthday">
             </div>
         </div>
     </div>
