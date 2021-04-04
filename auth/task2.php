@@ -14,6 +14,7 @@
     $isNameValid = false;
     $isEmailValid = false;
     $isUsernameValid = false;
+    $isPasswordValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -28,6 +29,10 @@
         $usernamePattern = "/(.*[a-z]){5}/i";
         $username = $_REQUEST["username"];
         $isUsernameValid = preg_match($usernamePattern,$username);
+
+        $passwordPattern = "/(.*[a-z]){8}/i";
+        $password = $_REQUEST["password"];
+        $isPasswordValid = preg_match($passwordPattern,$password);
     }
 
 
@@ -61,6 +66,15 @@
             <label for="name" class="col-sm-2 col-form-label">username</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isUsernameValid ? "": "is-invalid"?>" id="username" name="username" placeholder="enter username">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="password" class="col-sm-2 col-form-label">password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control <?=$isPasswordValid ? "": "is-invalid"?>" id="password" name="password" placeholder="enter password">
             </div>
         </div>
     </div>
