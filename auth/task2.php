@@ -20,6 +20,7 @@
     $isGenderValid = false;
     $isMaritalValid = false;
     $isCityValid = false;
+    $isPostalValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -61,6 +62,9 @@
         if ($city){
             $isCityValid = true;
         }
+
+        $postal = $_REQUEST["postal"];
+        $isPostalValid = preg_match("/^SW[0-9]{4}$/",$postal);
     }
 
 
@@ -157,6 +161,15 @@
             <label for="city" class="col-sm-2 col-form-label">city</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isCityValid ? "": "is-invalid"?>" id="city" name="city" placeholder="enter city ">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="postal" class="col-sm-2 col-form-label">postal code</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isPostalValid ? "": "is-invalid"?>" id="postal" name="postal" placeholder="enter postal code ">
             </div>
         </div>
     </div>
