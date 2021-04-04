@@ -24,6 +24,7 @@
     $isPhoneValid = false;
     $isCreditNumberValid = false;
     $isCreditDateValid = false;
+    $isSalaryValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -78,6 +79,9 @@
 
         $creditDate = $_REQUEST["creditDate"];
         $isCreditDateValid = preg_match("/^(0[1-9]|1[0-2])\.(0[1-9]|1\d|2\d|3[01])\.(19|20)\d{2}$/",$creditDate);
+
+        $salary = $_REQUEST["salary"];
+        $isSalaryValid = preg_match("/[0-9][0-9][0-9],[0-9][0-9][0-9]\.[0-9][0-9]/",$salary);
 
     }
 
@@ -211,6 +215,15 @@
             <label for="creditDate" class="col-sm-2 col-form-label">credit card expiry date</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isCreditDateValid ? "": "is-invalid"?>" id="creditDate" name="creditDate" placeholder="enter credit card expiry date ">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="salary" class="col-sm-2 col-form-label">monthly salary</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isSalaryValid ? "": "is-invalid"?>" id="salary" name="salary" placeholder="enter monthly salary">
             </div>
         </div>
     </div>
