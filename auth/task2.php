@@ -19,6 +19,7 @@
     $isBirthdayValid = false;
     $isGenderValid = false;
     $isMaritalValid = false;
+    $isCityValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -51,6 +52,15 @@
         //Marital Status Only 4 options accepted: Single, Married, Divorced, Widowed
         $marital = $_REQUEST["marital"];
         $isMaritalValid = preg_match("/Single|Married|Divorced|Widowed/i",$marital);
+
+        $address = $_REQUEST["address"];
+        $city = $_REQUEST["city"];
+        if ($address){
+            $isAddressValid = true;
+        }
+        if ($city){
+            $isCityValid = true;
+        }
     }
 
 
@@ -129,6 +139,24 @@
             <label for="marital" class="col-sm-2 col-form-label">marital status</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isMaritalValid ? "": "is-invalid"?>" id="marital" name="marital" placeholder="enter marital status">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="address" class="col-sm-2 col-form-label">address</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isAddressValid ? "": "is-invalid"?>" id="address" name="address" placeholder="enter address">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="city" class="col-sm-2 col-form-label">city</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isCityValid ? "": "is-invalid"?>" id="city" name="city" placeholder="enter city ">
             </div>
         </div>
     </div>
