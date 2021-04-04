@@ -21,6 +21,10 @@
     $input3 = "";
     $answer3 = "incorrect phone format";
 
+    // eliminate whitespace
+    $txt4 = "";
+    $answer4 = "";
+
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         // whether text contains string
         $input1 = $_REQUEST["input1"];
@@ -44,6 +48,9 @@
         if ($isPhoneValid){
             $answer3 = "phone is in correct form";
         }
+        // eliminate whitespace
+        $txt4 = $_REQUEST["txt4"];
+        $answer4 = preg_replace('/\s+/', ' ', $txt4);
     }
 
 ?>
@@ -96,7 +103,20 @@
             </form>
         </div>
         <div class="col-sm">
-            One of three columns
+            <form action="task1.php" method="post">
+
+                <div class="mb-3">
+                    <label for="txt4" class="form-label">text</label>
+                    <textarea class="form-control" id="txt4" name="txt4" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="answer4" class="form-label">text</label>
+                    <textarea class="form-control" id="txt1" name="answer4" rows="3">
+                        <?=$answer4?>
+                    </textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">eliminate whitespace</button>
+            </form>
         </div>
     </div>
 
