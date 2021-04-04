@@ -28,6 +28,9 @@
     // remove non-numeric characters except , and .
     $txt5 = "";
     $answer5 = "";
+    // remove new lines
+    $txt6 = "";
+    $answer6 = "";
 
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         // whether text contains string
@@ -58,6 +61,10 @@
         // remove non numeric characters except , and .
         $txt5 = $_REQUEST["txt5"];
         $answer5 = preg_replace("/[^0-9||.|,]/","",$txt5);
+
+        // removing new lines
+        $txt6= $_REQUEST["txt6"];
+        $answer6 = preg_replace("/\r?\n|\r/","",$txt6);
     }
 
 ?>
@@ -118,7 +125,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="answer4" class="form-label">text</label>
-                    <textarea class="form-control" id="txt1" name="answer4" rows="3">
+                    <textarea class="form-control" id="answer4" name="answer4" rows="3">
                         <?=$answer4?>
                     </textarea>
                 </div>
@@ -137,7 +144,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="answer5" class="form-label">text</label>
-                    <textarea class="form-control" id="txt1" name="answer5" rows="3">
+                    <textarea class="form-control" id="answer5" name="answer5" rows="3">
                         <?=$answer5?>
                     </textarea>
                 </div>
@@ -145,7 +152,20 @@
             </form>
         </div>
         <div class="col-sm">
-            One of three columns
+            <form action="task1.php" method="post">
+
+                <div class="mb-3">
+                    <label for="txt6" class="form-label">text</label>
+                    <textarea class="form-control" id="txt6" name="txt6" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="answer6" class="form-label">text</label>
+                    <textarea class="form-control" id="answer6" name="answer6" rows="3">
+                        <?=$answer6?>
+                    </textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">remove new lines</button>
+            </form>
         </div>
     </div>
 
