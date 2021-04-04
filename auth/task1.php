@@ -32,6 +32,10 @@
     $txt6 = "";
     $answer6 = "";
 
+    // extracting a string inside parenthesis from a text
+    $txt7 = "";
+    $answer7 = "";
+
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         // whether text contains string
         $input1 = $_REQUEST["input1"];
@@ -65,6 +69,11 @@
         // removing new lines
         $txt6= $_REQUEST["txt6"];
         $answer6 = preg_replace("/\r?\n|\r/","",$txt6);
+        // extracting a string within parenthesis from a text
+        $txt7 = $_REQUEST["txt7"];
+        $extractPattern = "/\[(.*?)\]/";
+        preg_match($extractPattern,$txt7,$answer7);
+
     }
 
 ?>
@@ -171,10 +180,17 @@
 
     <div class="row">
         <div class="col-sm">
-            One of three columns
-        </div>
-        <div class="col-sm">
-            One of three columns
+            <form action="task1.php" method="post">
+
+                <div class="mb-3">
+                    <label for="txt7" class="form-label">text</label>
+                    <textarea class="form-control" id="txt7" name="txt7" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <p><?= var_dump($answer7[1]) ?></p>
+                </div>
+                <button type="submit" class="btn btn-primary">extract from []</button>
+            </form>
         </div>
     </div>
 
