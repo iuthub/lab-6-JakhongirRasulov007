@@ -25,6 +25,10 @@
     $txt4 = "";
     $answer4 = "";
 
+    // remove non-numeric characters except , and .
+    $txt5 = "";
+    $answer5 = "";
+
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         // whether text contains string
         $input1 = $_REQUEST["input1"];
@@ -51,6 +55,9 @@
         // eliminate whitespace
         $txt4 = $_REQUEST["txt4"];
         $answer4 = preg_replace('/\s+/', ' ', $txt4);
+        // remove non numeric characters except , and .
+        $txt5 = $_REQUEST["txt5"];
+        $answer5 = preg_replace("/[^0-9||.|,]/","",$txt5);
     }
 
 ?>
@@ -122,7 +129,20 @@
 
     <div class="row">
         <div class="col-sm">
-            One of three columns
+            <form action="task1.php" method="post">
+
+                <div class="mb-3">
+                    <label for="txt5" class="form-label">text</label>
+                    <textarea class="form-control" id="txt5" name="txt5" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="answer5" class="form-label">text</label>
+                    <textarea class="form-control" id="txt1" name="answer5" rows="3">
+                        <?=$answer5?>
+                    </textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">remove non numeric characters except , and .</button>
+            </form>
         </div>
         <div class="col-sm">
             One of three columns
