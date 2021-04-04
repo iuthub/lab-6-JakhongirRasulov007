@@ -10,15 +10,29 @@
 <body>
 <h1>Task-1</h1>
 <?php
+// whether text contains string
     $input1 = "";
     $txt1 = "";
     $answer1 = "does not contain";
+    //whether input2 is an email
+    $input2 = "";
+    $answer2 = "It is not an email";
+
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
+        // whether text contains string
         $input1 = $_REQUEST["input1"];
         $txt1 = $_REQUEST["txt1"];
         $contains = preg_match("/$input1/i", $txt1);
         if ($contains){
             $answer1 = "contains";
+        }
+
+        //whether input2 is an email
+        $input2 = $_REQUEST["input2"];
+        $emailPattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+        $isEmailValid = preg_match("/$emailPattern/", $input2);
+        if ($isEmailValid){
+            $answer2 = "email is valid";
         }
     }
 
@@ -45,7 +59,18 @@
         </div>
 
         <div class="col-sm">
-            One of three columns
+
+            <form action="task1.php" method="post">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="input2" name="input2" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <button type="submit" class="btn btn-primary">check if it is email</button>
+                <p><?=$answer2?></p>
+            </form>
+
+
         </div>
     </div>
 
