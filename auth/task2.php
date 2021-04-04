@@ -23,6 +23,7 @@
     $isPostalValid = false;
     $isPhoneValid = false;
     $isCreditNumberValid = false;
+    $isCreditDateValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -74,6 +75,10 @@
         //Credit Card Number This is required field. It should follow 16 digit format. For ex, 1234 1234 1234 1234
         $creditCard = $_REQUEST["creditCard"];
         $isCreditNumberValid = preg_match("/^SW[0-9]{16}$//",$creditCard);
+
+        $creditDate = $_REQUEST["creditDate"];
+        $isCreditDateValid = preg_match("/^(0[1-9]|1[0-2])\.(0[1-9]|1\d|2\d|3[01])\.(19|20)\d{2}$/",$creditDate);
+
     }
 
 
@@ -197,6 +202,15 @@
             <label for="creditNumber" class="col-sm-2 col-form-label">credit card number</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isCreditNumberValid ? "": "is-invalid"?>" id="creditNumber" name="creditNumber" placeholder="enter credit card number ">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="creditDate" class="col-sm-2 col-form-label">credit card expiry date</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isCreditDateValid ? "": "is-invalid"?>" id="creditDate" name="creditDate" placeholder="enter credit card expiry date ">
             </div>
         </div>
     </div>
