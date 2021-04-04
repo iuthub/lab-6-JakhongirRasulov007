@@ -13,6 +13,7 @@
     $name ="";
     $isNameValid = false;
     $isEmailValid = false;
+    $isUsernameValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -23,6 +24,10 @@
         $email = $_REQUEST["email"];
         $emailPattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
         $isEmailValid = preg_match("/$emailPattern/", $email);
+
+        $usernamePattern = "/(.*[a-z]){5}/i";
+        $username = $_REQUEST["username"];
+        $isUsernameValid = preg_match($usernamePattern,$username);
     }
 
 
@@ -46,11 +51,19 @@
         <div class="row mb-3">
             <label for="email" class="col-sm-2 col-form-label">email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control <?=$isEmailValid ? "": "is-invalid"?>" id="name" name="email" placeholder="enter email">
+                <input type="email" class="form-control <?=$isEmailValid ? "": "is-invalid"?>" id="email" name="email" placeholder="enter email">
             </div>
         </div>
     </div>
 
+    <div class="container">
+        <div class="row mb-3">
+            <label for="name" class="col-sm-2 col-form-label">username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isUsernameValid ? "": "is-invalid"?>" id="username" name="username" placeholder="enter username">
+            </div>
+        </div>
+    </div>
 
 
 
