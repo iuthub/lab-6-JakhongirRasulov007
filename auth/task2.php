@@ -17,6 +17,7 @@
     $isPasswordValid = false;
     $isConfirmPasswordValid = false;
     $isBirthdayValid = false;
+    $isGenderValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -43,6 +44,9 @@
         $birthday = $_REQUEST["birthday"];
         $birthdayPattern = "/^(0[1-9]|1[0-2])\.(0[1-9]|1\d|2\d|3[01])\.(19|20)\d{2}$/";
         $isBirthdayValid = preg_match($birthdayPattern,$birthday);
+
+        $gender = $_REQUEST["gender"];
+        $isGenderValid = preg_match("/male|female/i", $gender);
     }
 
 
@@ -103,6 +107,15 @@
             <label for="birthday" class="col-sm-2 col-form-label">birthday</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isBirthdayValid ? "": "is-invalid"?>" id="birthday" name="birthday" placeholder="enter birthday">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="gender" class="col-sm-2 col-form-label">gender</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isGenderValid ? "": "is-invalid"?>" id="gender" name="gender" placeholder="enter gender">
             </div>
         </div>
     </div>
