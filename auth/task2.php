@@ -26,6 +26,7 @@
     $isCreditDateValid = false;
     $isSalaryValid = false;
     $isUrlValid = false;
+    $isGpaValid =false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -88,6 +89,10 @@
         $isUrlValid = preg_match("/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
 ",$url);
 
+        $gpa = $_REQUEST["gpa"];
+        if ($gpa > 0 && $$gpa <= 4.5){
+            $isGpaValid = true;
+        }
     }
 
 
@@ -238,6 +243,15 @@
             <label for="url" class="col-sm-2 col-form-label">website url</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isUrlValid ? "": "is-invalid"?>" id="url" name="url" placeholder="enter website url">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="gpa" class="col-sm-2 col-form-label">overall GPA</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isGpaValid ? "": "is-invalid"?>" id="gpa" name="gpa" placeholder="enter overall GPA">
             </div>
         </div>
     </div>
