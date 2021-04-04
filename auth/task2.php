@@ -25,6 +25,7 @@
     $isCreditNumberValid = false;
     $isCreditDateValid = false;
     $isSalaryValid = false;
+    $isUrlValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -82,6 +83,10 @@
 
         $salary = $_REQUEST["salary"];
         $isSalaryValid = preg_match("/[0-9][0-9][0-9],[0-9][0-9][0-9]\.[0-9][0-9]/",$salary);
+
+        $url = $_REQUEST["url"];
+        $isUrlValid = preg_match("/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
+",$url);
 
     }
 
@@ -224,6 +229,15 @@
             <label for="salary" class="col-sm-2 col-form-label">monthly salary</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isSalaryValid ? "": "is-invalid"?>" id="salary" name="salary" placeholder="enter monthly salary">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="url" class="col-sm-2 col-form-label">website url</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isUrlValid ? "": "is-invalid"?>" id="url" name="url" placeholder="enter website url">
             </div>
         </div>
     </div>
