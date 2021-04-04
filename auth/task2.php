@@ -18,6 +18,7 @@
     $isConfirmPasswordValid = false;
     $isBirthdayValid = false;
     $isGenderValid = false;
+    $isMaritalValid = false;
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         //check name
         $namePattern = "/(.*[a-z]){2}/i";
@@ -47,6 +48,9 @@
 
         $gender = $_REQUEST["gender"];
         $isGenderValid = preg_match("/male|female/i", $gender);
+        //Marital Status Only 4 options accepted: Single, Married, Divorced, Widowed
+        $marital = $_REQUEST["marital"];
+        $isMaritalValid = preg_match("/Single|Married|Divorced|Widowed/i",$marital);
     }
 
 
@@ -116,6 +120,15 @@
             <label for="gender" class="col-sm-2 col-form-label">gender</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control <?=$isGenderValid ? "": "is-invalid"?>" id="gender" name="gender" placeholder="enter gender">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3">
+            <label for="marital" class="col-sm-2 col-form-label">marital status</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control <?=$isMaritalValid ? "": "is-invalid"?>" id="marital" name="marital" placeholder="enter marital status">
             </div>
         </div>
     </div>
