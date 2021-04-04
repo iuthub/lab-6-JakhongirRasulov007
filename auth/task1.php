@@ -17,6 +17,9 @@
     //whether input2 is an email
     $input2 = "";
     $answer2 = "It is not an email";
+    // check phone number
+    $input3 = "";
+    $answer3 = "incorrect phone format";
 
     if ($_SERVER["REQUEST_METHOD"] = "POST"){
         // whether text contains string
@@ -33,6 +36,13 @@
         $isEmailValid = preg_match("/$emailPattern/", $input2);
         if ($isEmailValid){
             $answer2 = "email is valid";
+        }
+        // phone number checking
+        $input3 = $_REQUEST["input3"];
+        $phonePattern = "\+998-[0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]";
+        $isPhoneValid = preg_match("/$phonePattern/gim",$input3);
+        if ($isPhoneValid){
+            $answer3 = "phone is in correct form";
         }
     }
 
@@ -70,13 +80,20 @@
                 <p><?=$answer2?></p>
             </form>
 
-
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm">
-            One of three columns
+            <form action="task1.php" method="post">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Phone number (+998-xx-xxx-xxxx)</label>
+                    <input type="text" class="form-control" id="input3" name="input3" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your phone with anyone else.</div>
+                </div>
+                <button type="submit" class="btn btn-primary">check phone number</button>
+                <p><?=$answer3?></p>
+            </form>
         </div>
         <div class="col-sm">
             One of three columns
